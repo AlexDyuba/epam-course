@@ -18,7 +18,8 @@ public class Solution {
 //        System.out.println(findSumLine(0.001));
 //        showSymbolAndCode();
 //        System.out.println(findDivide(2, 20));
-        System.out.println(isEqualsNumber(12, 13));
+//        System.out.println(isEqualsNumber(12, 13));
+//        System.out.println(isEqualsNumber(1234593490, 542222100));
     }
     // Line program
     // 1
@@ -147,7 +148,7 @@ public class Solution {
     // 5
     // an = 1 / 2^n + 1 / 3^n;
     public static double findSumLine(double e) {
-        // if n = 0 i dont know where line are started n = 0 or n = 1 ??
+       // n = 0 or n = 1 where is it start ?
         int n = 1;
         double sum = 2; // sum an0
         double tempSum;
@@ -162,7 +163,7 @@ public class Solution {
     //6
     //symbol - number ????
     public static void showSymbolAndCode() {
-        for (int i = 0; i < 10000; i++) {
+        for (int i = 0; i <= 65535; i++) {
             System.out.println((char)i);
         }
     }
@@ -184,26 +185,31 @@ public class Solution {
         return map;
     }
     // 8 даны два числа определить какие цифры входят как в первое так и во второе
+    // не нравится решение, но хочется спать)
     public static List<Integer> isEqualsNumber(int a, int b) {
-        List<Integer> list = new ArrayList<>();
-        int temp = b;
-        int number = a % 10;
-        int tempNumber = b % 10;
-        while (a > 0) {
-            while (tempNumber > 0) {
-                if(number == tempNumber) {
-                    list.add(number);
-                    break;
-                }
-                b /= 10;
-                tempNumber = b % 10;
-            }
-            b = temp;
-            a /= 10;
-            number = a % 10;
+        Integer integer = a;
+        Integer integer1 = b;
+        List<Integer> res = new ArrayList<>();
+        char[] msA = integer.toString().toCharArray();
+        char[] msB = integer1.toString().toCharArray();
+        List<Character> res1 = new ArrayList<>();
+        for (Character i : msB) {
+            res1.add(i);
         }
-        return list;
+        List<Character> list = new ArrayList<>();
+        for (Character i : msA) {
+            if(list.contains(i)) {
+                continue;
+            } else {
+                list.add(i);
+            }
+        }
+        for (Character i : list) {
+            if(res1.contains(i)) {
+                res.add(Integer.parseInt(i + ""));
+            }
+        }
+        return res;
     }
 
-    ////g
 }
